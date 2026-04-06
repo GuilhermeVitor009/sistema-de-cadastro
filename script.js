@@ -1,7 +1,8 @@
-const { json } = require("express");
+
 
 const submit = document.getElementById("submit");
-function pegarDados() {
+console.log(submit);
+
 submit.addEventListener("submit", (event) => {
     event.preventDefault();
     const name = document.getElementById("name").value;
@@ -11,8 +12,8 @@ submit.addEventListener("submit", (event) => {
         name,
         password
     };
+    document.getElementById("div").style.display = "block";
+    document.getElementById("div").innerText = "MUDOU";
 
-    const jsonData = JSON.stringify(data);
 });
-console.log("Dados enviados com sucesso!" + jsonData);
-}
+

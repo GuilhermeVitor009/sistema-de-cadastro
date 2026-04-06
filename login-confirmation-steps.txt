@@ -1,0 +1,27 @@
+1. Entender como o login envia e recebe dados:
+   - Pesquise como funciona o envio de formulários em JavaScript - O form manda os dados por meio do submit, daí ao selecionar ele, eu faço um addEventListener para poder trabalhar esses dados na pagina
+   - Pesquise como receber e interpretar a resposta JSON do servidor
+
+2. Aprender o fluxo de confirmação na interface:
+   - Pesquise como exibir uma mensagem de sucesso/erro em uma página web
+   - Busque exemplos de notificações simples que aparecem após uma requisição
+
+3. Identificar onde guardar e usar o token de login:
+   - Pesquise sobre armazenar e usar tokens JWT no navegador
+   - Veja como o token pode ser usado para mostrar que o login deu certo
+
+4. Entender os estados do processo de login:
+   - Pesquise sobre estados como "pendente", "sucesso" e "falha" no frontend
+   - Veja como ativar a confirmação apenas quando a resposta JSON indicar sucesso
+
+5. Verificar o retorno do servidor:
+   - Pesquise como examinar os campos JSON retornados pelo backend
+   - Procure por exemplos de resposta com campos como "token" e "message"
+
+6. Fazer a confirmação amigável ao usuário:
+   - Pesquise padrões de UX para mensagens de confirmação de login
+   - Veja exemplos de textos simples como "Login realizado com sucesso" ou "Erro no login"
+
+7. Conectar a pesquisa com a prática:
+   - Junte as informações para criar um fluxo: enviar login, receber JSON, verificar sucesso, mostrar mensagem
+   - Pesquise como limpar ou atualizar a mensagem se o usuário tentar novamente
