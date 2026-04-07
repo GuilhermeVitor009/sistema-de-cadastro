@@ -1,6 +1,28 @@
 {
   "dependencies": {
     "express": "^5.2.1",
-    "mqtt": "^5.15.1"
-  }
+    "mqtt": "^5.15.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
+  },
+  "name": "sistema-de-cadastro",
+  "version": "1.0.0",
+  "description": "<h1>Sistema de cadastro</h1>",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuilhermeVitor009/sistema-de-cadastro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/GuilhermeVitor009/sistema-de-cadastro/issues"
+  },
+  "homepage": "https://github.com/GuilhermeVitor009/sistema-de-cadastro#readme"
 }

@@ -1,6 +1,11 @@
 1. Entender como o login envia e recebe dados:
    - Pesquise como funciona o envio de formulários em JavaScript - O form manda os dados por meio do submit, daí ao selecionar ele, eu faço um addEventListener para poder trabalhar esses dados na pagina
-   - Pesquise como receber e interpretar a resposta JSON do servidor
+   - Pesquise como receber e interpretar a resposta JSON do servidor - Eu recebo a info do banco de dados por meio da requisição que no js é pela função fetch. essa requisição é convertida (parse) do json para um objeto reutilizável
+fetch(recurso). 
+	then( response=> response.json()).
+		then( data=>{
+			console.log(data.nome);
+});
 
 2. Aprender o fluxo de confirmação na interface:
    - Pesquise como exibir uma mensagem de sucesso/erro em uma página web

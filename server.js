@@ -1,10 +1,18 @@
 // Este é como um grande armário mágico chamado "express" que ajuda a criar sites na internet
 // É como pedir emprestado ferramentas especiais de um amigo para construir sua casa de bonecas
 const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
 
 // Aqui estamos criando nossa própria casinha na internet, chamada "app"
 // É como montar sua tenda no quintal para brincar
 const app = express();
+const db = new sqlite3.Database('./database.db',
+    (err) => {
+        if (err){
+            console.error(err.message);
+        }
+    }
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
@@ -31,6 +39,35 @@ app.get('/api/login', (req, res) => {
     // Como dar o brinquedo certo para cada amigo que pede
     
     res.sendFile(__dirname + '/public/login.html');
+});
+
+app.get('/api/cadastro', (req, res) => {
+    // Mandamos o arquivo de login para quem pediu
+    // Como dar o brinquedo certo para cada amigo que pede
+    
+    res.sendFile(__dirname + '/public/cadastro.html');
+});
+
+app.post('/api/cadastro',(req, res)=>{
+    const {nome, senha, cpf, sexo, idade, rua, numero, uf, cidade} = req.body;
+    db.serialize(() => {
+        db.run(`CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14) NOT NULL UNIQUE,
+    sexo CHAR(1),
+    idade INT,
+    rua VARCHAR(150),
+    numero VARCHAR(10),
+    uf CHAR(2),
+    cidade VARCHAR(100)
+);`);
+
+console.log("Tabela criada com sucesso!");
+
+})
+res.sendFile(__dirname + '/public/cadastro.html');
 });
 
 // Esta linha em branco é outra pausa para respirar
