@@ -13,6 +13,18 @@ const db = new sqlite3.Database('./database.db',
         }
     }
 );
+db.run(`CREATE TABLE IF NOT EXISTS usuarios (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    senha TEXT NOT NULL,
+    cpf TEXT UNIQUE,
+    sexo TEXT,
+    idade INTEGER,
+    rua TEXT,
+    numero TEXT,
+    uf TEXT,
+    cidade TEXT
+)`);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
@@ -43,31 +55,41 @@ app.get('/api/login', (req, res) => {
 
 app.get('/api/cadastro', (req, res) => {
     // Mandamos o arquivo de login para quem pediu
+    // Como dar o brinquedo certo para cada amigo que pede  
+    res.sendFile(__dirname + '/public/cadastro.html');
+});
+
+app.get('/api/usuarios', (req, res) => {
+    // Mandamos o arquivo de login para quem pediu
     // Como dar o brinquedo certo para cada amigo que pede
     
-    res.sendFile(__dirname + '/public/cadastro.html');
+    
+
+    db.all('SELECT * FROM usuarios', [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        console.log(rows);
+        res.json(rows);
+    });
+
 });
 
 app.post('/api/cadastro',(req, res)=>{
     const {nome, senha, cpf, sexo, idade, rua, numero, uf, cidade} = req.body;
     db.serialize(() => {
-        db.run(`CREATE TABLE usuarios (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    senha VARCHAR(255) NOT NULL,
-    cpf VARCHAR(14) NOT NULL UNIQUE,
-    sexo CHAR(1),
-    idade INT,
-    rua VARCHAR(150),
-    numero VARCHAR(10),
-    uf CHAR(2),
-    cidade VARCHAR(100)
-);`);
+        
+
+db.run('INSERT INTO usuarios (nome, senha, cpf, sexo, idade, rua, numero, uf, cidade) VALUES(?,?,?,?,?,?,?,?,?)',[nome, senha, cpf, sexo, idade, rua, numero, uf, cidade],function(err){
+    if (err) {
+        return console.log(err.message);
+    }});
 
 console.log("Tabela criada com sucesso!");
+console.log(req.body);
 
 })
-res.sendFile(__dirname + '/public/cadastro.html');
+
 });
 
 // Esta linha em branco é outra pausa para respirar

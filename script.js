@@ -48,8 +48,8 @@ function handleCadastro(event) {
     }
 
     // Validar CPF (simples)
-    if (cpf.length < 11) {
-        showMessage('CPF deve ter pelo menos 11 dígitos.', 'error');
+    if (cpf.length != 11) {
+        showMessage('CPF deve ter 11 dígitos.', 'error');
         return;
     }
 
@@ -57,6 +57,11 @@ function handleCadastro(event) {
     showMessage('Criando conta...', 'info');
 
     // Aqui você pode adicionar o fetch para o servidor
+    fetch('/api/cadastro', {
+        method: 'POST',
+        headers: {  'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, senha, cpf })
+    });
     setTimeout(() => {
         showMessage('Conta criada com sucesso!', 'success');
     }, 1500);

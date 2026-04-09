@@ -75,7 +75,22 @@
             <a href="/api/login">Já tem conta? Faça login</a>
         </div>
     </div>
-
+<ul id="lista"></ul>
     <script src="../script.js"></script>
+    <script>
+        fetch('/api/usuarios')
+            .then(response => response.json())
+            .then(data => {
+                const lista = document.getElementById('lista');
+                data.forEach(usuario => {
+                    const item = document.createElement('li');
+                    item.textContent = `Nome: ${usuario.nome}, CPF: ${usuario.cpf}`;
+                    lista.appendChild(item);
+                });
+                console.log(lista);
+            })
+            .catch(error => console.error('Erro ao buscar usuários:', error));
+            
+    </script>
 </body>
 </html>
